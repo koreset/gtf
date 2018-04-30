@@ -26,10 +26,12 @@ var GtfTextFuncMap = textTemplate.FuncMap{
 
 		return strings.Replace(s2, s1, "", -1)
 	},
-	"title": func(s string) string {
+	"replace_underscore": func(s1 string, s2 string) string {
 		defer recovery()
-		return strings.Title(s)
+
+		return strings.Replace(s2, s1, " ", -1)
 	},
+
 	"default": func(arg interface{}, value interface{}) interface{} {
 		defer recovery()
 
@@ -149,9 +151,12 @@ var GtfTextFuncMap = textTemplate.FuncMap{
 
 		return strings.TrimSpace(s)
 	},
+	"title": func(s string) string {
+		defer recovery()
+		return strings.Title(s)
+	},
 	"capfirst": func(s string) string {
 		defer recovery()
-
 		return strings.ToUpper(string(s[0])) + s[1:]
 	},
 	"pluralize": func(arg string, value interface{}) string {

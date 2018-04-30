@@ -33,7 +33,10 @@ func TestGtfFuncMap(t *testing.T) {
 
 	ParseTest(&buffer, "{{ \"the go programming language\" | title }}", "")
 	AssertEqual(t, &buffer, "The Go Programming Language")
-	
+
+	ParseTest(&buffer, "{{ \"The Go_Programming_Language\" | replace_underscore \"_\" }}", "")
+	AssertEqual(t, &buffer, "The Go Programming Language")
+
 	ParseTest(&buffer, "{{ \"The Go Programming Language\" | default \"default value\" }}", "")
 	AssertEqual(t, &buffer, "The Go Programming Language")
 
